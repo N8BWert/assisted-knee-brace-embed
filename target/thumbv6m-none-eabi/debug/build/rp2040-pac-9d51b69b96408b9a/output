@@ -1,0 +1,3 @@
+cargo:rustc-link-search=/home/n8w3rt/Documents/robotech_2/pico-code/target/thumbv6m-none-eabi/debug/build/rp2040-pac-9d51b69b96408b9a/out
+cargo:rerun-if-changed=device.x
+cargo:rerun-if-changed=build.rs
