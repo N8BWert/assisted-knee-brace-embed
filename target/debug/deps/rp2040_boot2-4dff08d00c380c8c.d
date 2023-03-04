@@ -1,0 +1,14 @@
+/home/n8w3rt/Documents/robotech_2/assisted-knee-brace-embed/target/debug/deps/rp2040_boot2-4dff08d00c380c8c.rmeta: /home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/src/lib.rs /home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_w25q080.padded.bin /home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_ram_memcpy.padded.bin /home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_at25sf128a.padded.bin /home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_gd25q64cs.padded.bin /home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_w25x10cl.padded.bin /home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_generic_03h.padded.bin /home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_is25lp080.padded.bin
+
+/home/n8w3rt/Documents/robotech_2/assisted-knee-brace-embed/target/debug/deps/rp2040_boot2-4dff08d00c380c8c.d: /home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/src/lib.rs /home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_w25q080.padded.bin /home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_ram_memcpy.padded.bin /home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_at25sf128a.padded.bin /home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_gd25q64cs.padded.bin /home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_w25x10cl.padded.bin /home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_generic_03h.padded.bin /home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_is25lp080.padded.bin
+
+/home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/src/lib.rs:
+/home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_w25q080.padded.bin:
+/home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_ram_memcpy.padded.bin:
+/home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_at25sf128a.padded.bin:
+/home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_gd25q64cs.padded.bin:
+/home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_w25x10cl.padded.bin:
+/home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_generic_03h.padded.bin:
+/home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1/bin/boot2_is25lp080.padded.bin:
+
+# env-dep:CARGO_MANIFEST_DIR=/home/n8w3rt/.cargo/registry/src/github.com-1ecc6299db9ec823/rp2040-boot2-0.2.1

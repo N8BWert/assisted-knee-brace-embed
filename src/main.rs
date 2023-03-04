@@ -7,8 +7,13 @@
 use bsp::entry;
 use defmt::*;
 use defmt_rtt as _;
-use embedded_hal::digital::v2::OutputPin;
+use embedded_hal::{
+    digital::v2::OutputPin,
+    PwmPin,
+    prelude::_embedded_hal_blocking_i2c_Read,
+};
 use panic_probe as _;
+use fugit::RateExtU32;
 
 // Provide an alias for our BSP so we can switch targets quickly.
 // Uncomment the BSP you included in Cargo.toml, the rest of the code does not need to change.
@@ -20,6 +25,10 @@ use bsp::hal::{
     pac,
     sio::Sio,
     watchdog::Watchdog,
+    pwm::{InputHighRunning, Slices},
+    gpio::{Pins, FunctionUart},
+    uart::{self, DataBits, StopBits, UartConfig, UartPeripheral},
+    i2c::I2C,
 };
 
 #[entry]
@@ -29,6 +38,7 @@ fn main() -> ! {
     let core = pac::CorePeripherals::take().unwrap();
     let mut watchdog = Watchdog::new(pac.WATCHDOG);
     let sio = Sio::new(pac.SIO);
+    let mut peripherals = pac::Peripherals::take().unwrap();
 
     // External high-speed crystal on the pico board is 12Mhz
     let external_xtal_freq_hz = 12_000_000u32;
@@ -53,20 +63,67 @@ fn main() -> ! {
         &mut pac.RESETS,
     );
 
-    // This is the correct pin on the Raspberry Pico board. On other boards, even if they have an
-    // on-board LED, it might need to be changed.
-    // Notably, on the Pico W, the LED is not connected to any of the RP2040 GPIOs but to the cyw43 module instead. If you have
-    // a Pico W and want to toggle a LED with a simple GPIO output pin, you can connect an external
-    // LED to one of the GPIO pins, and reference that pin here.
-    let mut led_pin = pins.led.into_push_pull_output();
+    // Init PWMS
+    let pwm_slices = Slices::new(pac.PWM, &mut pac.RESETS);
+
+    // Initialize the indiactor pin (tells whether the system is on or off)
+    let mut indicator_pin = pins.gpio26.into_push_pull_output();
+
+    // Setup the sticky button to tell whether the device should be on or off
+    // TODO: test that this is how to setup the type of button
+    let on_off_button = pins.gpio28.into_pull_down_input();
+    let mut turned_on = false;
+
+    // Setup the calibration button
+    let calibration_button = pins.gpio27.into_pull_down_input();
+
+    // Setup pwm channel 6 (6A will be used by motor 1 and 6B will be used by motor 2)
+    let mut motor_pwm = pwm_slices.pwm6;
+    motor_pwm.set_ph_correct();
+    motor_pwm.enable();
+
+    // Channel A -> motor 1 PWM --- Channel B -> Motor 2 PWM
+    let mut motor_1_pwm_channel = motor_pwm.channel_a;
+    let mut motor_2_pwm_channel = motor_pwm.channel_b;
+
+    // Initialize the motor 1 directional outputs
+    let mut motor_1_forwards = pins.gpio10.into_push_pull_output();
+    let mut motor_1_backwards = pins.gpio11.into_push_pull_output();
+
+    // Initialize the motor 2 directional outputs
+    let mut motor_2_forwards = pins.gpio14.into_push_pull_output();
+    let mut motor_2_backwards = pins.gpio15.into_push_pull_output();
+
+    // Setup bluetooth UART on GPIO 4 and GPIO 5
+    let uart_pins = (
+        pins.gpio4.into_mode::<FunctionUart>(),
+        pins.gpio5.into_mode::<FunctionUart>(),
+    );
+
+    // Clock init UART or it will freeze
+    // TODO: Figure out how to broadcast bluetooth availability
+    let uart = UartPeripheral::new(peripherals.UART1, uart_pins, &mut peripherals.RESETS)
+        .enable(
+            UartConfig::new(9600_u32.Hz(), DataBits::Eight, None, StopBits::One),
+            clocks.peripheral_clock.freq(),
+        ).unwrap();
+
+    let mut i2c = I2C::i2c0(
+        peripherals.I2C0,
+        pins.gpio8.into_mode(),
+        pins.gpio9.into_mode(),
+        400.kHz(),
+        &mut peripherals.RESETS,
+        120_000_000.Hz(),
+    );
 
     loop {
-        info!("on!");
-        led_pin.set_high().unwrap();
-        delay.delay_ms(500);
-        info!("off!");
-        led_pin.set_low().unwrap();
-        delay.delay_ms(500);
+        // info!("on!");
+        // led_pin.set_high().unwrap();
+        // delay.delay_ms(500);
+        // info!("off!");
+        // led_pin.set_low().unwrap();
+        // delay.delay_ms(500);
     }
 }
 

@@ -1,0 +1,2 @@
+cargo:rustc-link-search=/home/n8w3rt/Documents/robotech_2/assisted-knee-brace-embed/target/debug/build/rp2040-project-template-bef51ab58fddad6d/out
+cargo:rerun-if-changed=memory.x

@@ -1,0 +1,3 @@
+cargo:rustc-link-search=/home/n8w3rt/Documents/robotech_2/assisted-knee-brace-embed/target/debug/build/cortex-m-rt-2b07272652e11e8b/out
+cargo:rerun-if-changed=build.rs
+cargo:rerun-if-changed=link.x.in
